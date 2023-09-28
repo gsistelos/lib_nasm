@@ -1,6 +1,6 @@
 TARGET = libasm.a
 
-SRC = $(addprefix src/, strlen.asm)
+SRC = $(addprefix src/, puts.asm strlen.asm)
 
 OBJ = $(SRC:.asm=.o)
 
