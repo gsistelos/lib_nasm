@@ -1,8 +1,8 @@
-TARGET = libasm.a
+NAME = libasm.a
 
-SRC = $(addprefix src/, puts.asm strcmp.asm strlen.asm)
+SRC = $(addprefix src/, ft_read.s ft_strcmp.s ft_strcpy.s ft_strlen.s ft_write.s)
 
-OBJ = $(SRC:.asm=.o)
+OBJ = $(SRC:.s=.o)
 
 AS = nasm
 
@@ -10,17 +10,23 @@ ASFLAGS = -f elf64
 
 RM = rm -f
 
-all: $(TARGET)
 
-$(TARGET): $(OBJ)
-	ar rcs $(TARGET) $(OBJ)
+.PHONY: all
+all: $(NAME)
 
-%.o: %.asm
-	$(AS) $(ASFLAGS) -o $@ $<
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
+.s.o:
+	$(AS) $(ASFLAGS) $< -o $@
+
+.PHONY: clean
 clean:
-	$(RM) $(OBJ) $(TARGET)
+	$(RM) $(OBJ)
 
+.PHONY: fclean
+fclean: clean
+	$(RM) $(NAME)
+
+.PHONY: re
 re: clean all
-
-.PHONY: all clean re
