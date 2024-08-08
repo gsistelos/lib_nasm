@@ -1,3 +1,5 @@
+; int ft_strcmp(const char *s1, const char *s2);
+
 global ft_strcmp
 
 section .text
@@ -9,12 +11,9 @@ ft_strcmp:
 	;
 	; Output:
 	;     rax = an integer indicating the result of the comparison, as follows:
-	;           0, if the s1 and s2 are equal;
-	;           a negative value if s1 is less than s2;
-	;           a positive value if s1 is greater than s2.
-
-	push rdi
-	push rsi
+	;            0, if the s1 and s2 are equal;
+	;            a negative value if s1 is less than s2;
+	;            a positive value if s1 is greater than s2.
 
 .loop:
 	mov al, byte [rdi]
@@ -23,26 +22,20 @@ ft_strcmp:
 	cmp al, bl
 	jne .not_equal
 
-	cmp al, 0
-	je  .equal
+	test al, al
+	jz   .done
 
 	inc rdi
 	inc rsi
 	jmp .loop
 
 .not_equal:
-	pop rsi
-	pop rdi
-
 	movzx rax, al
 	movzx rbx, bl
 
 	sub rax, rbx
 	ret
 
-.equal:
-	pop rsi
-	pop rdi
-
+.done:
 	xor rax, rax
 	ret

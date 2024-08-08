@@ -1,0 +1,21 @@
+#include "libasm.h"
+
+#include <criterion/criterion.h>
+#include <signal.h>
+
+Test(ft_strcpy, basic) {
+  char *cases[] = {
+      "",
+      "Hello",
+      "Hello, world!",
+      NULL,
+  };
+
+  for (size_t i = 0; cases[i]; i++) {
+    char dest[100];
+
+    cr_assert_eq(ft_strcpy(dest, cases[i]), dest);
+  }
+}
+
+Test(ft_strcpy, null_ptr, .signal = SIGSEGV) { ft_strcpy(NULL, NULL); }

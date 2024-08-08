@@ -1,3 +1,5 @@
+; size_t ft_strlen(const char *s);
+
 global ft_strlen
 
 section .text
@@ -9,17 +11,17 @@ ft_strlen:
 	; Output:
 	;     rax = length of the string
 
-	push rdi
 	xor rax, rax
 
 .loop:
-	cmp byte [rdi], 0
-	je  .end
+	mov bl, [rdi]
+
+	test bl, bl
+	jz   .done
 
 	inc rax
 	inc rdi
 	jmp .loop
 
-.end:
-	pop rdi
+.done:
 	ret

@@ -1,3 +1,5 @@
+; ssize_t ft_read(int fd, void *buf, size_t count);
+
 extern __errno_location
 
 global ft_read
@@ -9,7 +11,7 @@ ft_read:
 	;     rdi = file descriptor
 	;     rsi = buffer
 	;     rdx = number of bytes to read
-
+	;
 	; Output:
 	;     rax = number of bytes read, -1 on error
 
@@ -22,15 +24,11 @@ ft_read:
 	ret
 
 .error:
-	push rdi
-
 	neg rax
-	mov rdi, rax
+	mov rbx, rax
 
 	call __errno_location
-	mov  [rax], rdi
-
-	pop rdi
+	mov  [rax], rbx
 
 	mov rax, -1
 	ret

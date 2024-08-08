@@ -3,3 +3,6 @@
 
 # Obj files
 *.o
+
+# Executables
+test

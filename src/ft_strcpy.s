@@ -1,33 +1,29 @@
+; char *ft_strcpy(char *dest, const char *src);
+
 global ft_strcpy
 
 section .text
 
 ft_strcpy:
 	; Input:
-	;     rdi = address of the dst string
-	;     rsi = address of the src string
+	;     rdi = address of the destination string
+	;     rsi = address of the source string
 	;
 	; Output:
-	;     rax = address of the dst string
+	;     rax = address of the destination string
 
-	push rdi
-	push rsi
+	mov rax, rdi
 
 .loop:
-	mov al, byte [rsi]
+	mov bl, [rsi]
+	mov [rdi], bl
 
-	mov byte [rdi], al
-
-	cmp al, 0
-	je  .end
+	test bl, bl
+	jz   .done
 
 	inc rdi
 	inc rsi
 	jmp .loop
 
-.end:
-	pop rsi
-	pop rdi
-
-	mov rax, rdi
+.done:
 	ret

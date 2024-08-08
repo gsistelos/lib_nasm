@@ -1,6 +1,6 @@
 NAME = test
 
-SRC = main.c
+SRC = $(wildcard src/*.c)
 
 OBJ = $(SRC:.c=.o)
 
@@ -8,7 +8,7 @@ LIB_PATH = ..
 
 LIB = $(LIB_PATH)/libasm.a
 
-CC = cc -no-pie
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -I$(LIB_PATH)
 
@@ -19,21 +19,23 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(LIB) $(OBJ)
-	$(CC) $(OBJ) $(LIB) -o $(NAME)
+	$(CC) -no-pie -lcriterion $(OBJ) $(LIB) -o $(NAME)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
-LIB:
+$(LIB):
 	make -C $(LIB_PATH)
 
 .PHONY: clean
 clean:
+	make -C $(LIB_PATH) clean
 	$(RM) $(OBJ)
 
 .PHONY: fclean
-fclean: clean
-	$(RM) $(NAME)
+fclean:
+	make -C $(LIB_PATH) fclean
+	$(RM) $(OBJ) $(NAME)
 
 .PHONY: re
-re: clean all
+re: fclean all

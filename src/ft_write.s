@@ -1,3 +1,5 @@
+; ssize_t ft_write(int fd, const void *buf, size_t count);
+
 extern __errno_location
 
 global ft_write
@@ -9,7 +11,7 @@ ft_write:
 	;     rdi = file descriptor
 	;     rsi = buffer
 	;     rdx = number of bytes to write
-
+	;
 	; Output:
 	;     rax = number of bytes written, -1 on error
 
@@ -22,15 +24,11 @@ ft_write:
 	ret
 
 .error:
-	push rdi
-
 	neg rax
-	mov rdi, rax
+	mov rbx, rax
 
 	call __errno_location
-	mov  [rax], rdi
-
-	pop rdi
+	mov  [rax], rbx
 
 	mov rax, -1
 	ret
