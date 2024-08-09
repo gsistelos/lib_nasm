@@ -14,7 +14,10 @@ Test(ft_strcpy, basic) {
   for (size_t i = 0; cases[i]; i++) {
     char dest[100];
 
-    cr_assert_eq(ft_strcpy(dest, cases[i]), dest);
+    char *ptr = ft_strcpy(dest, cases[i]);
+
+    cr_assert_eq(ptr, dest);
+    cr_assert_str_eq(dest, cases[i]);
   }
 }
 
