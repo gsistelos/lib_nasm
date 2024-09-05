@@ -6,11 +6,13 @@ OBJ = $(SRC:.c=.o)
 
 LIB_PATH = ..
 
+LIB_INCLUDE = $(LIB_PATH)/include
+
 LIB = $(LIB_PATH)/libasm.a
 
-CC = cc
+CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -I$(LIB_PATH)
+CFLAGS = -Wall -Wextra -Werror -I$(LIB_INCLUDE)
 
 RM = rm -f
 
@@ -19,7 +21,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(LIB) $(OBJ)
-	$(CC) -no-pie -lcriterion $(OBJ) $(LIB) -o $(NAME)
+	$(CC) -no-pie $(OBJ) -lcriterion -L$(LIB_PATH) -lasm -o $(NAME)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@

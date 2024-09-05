@@ -6,7 +6,7 @@ OBJ = $(SRC:.s=.o)
 
 AS = nasm
 
-ASFLAGS = -f elf64
+ASFLAGS = -f elf64 -Iinclude
 
 RM = rm -f
 
