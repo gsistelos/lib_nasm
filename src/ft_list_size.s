@@ -17,7 +17,6 @@ ft_list_size:
 
 	mov rdi, [rdi + 8] ; begin_list = begin_list->next
 	inc rax
-
 	jmp .loop
 
 .done:
