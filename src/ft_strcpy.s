@@ -2,8 +2,6 @@
 
 global ft_strcpy
 
-section .text
-
 ft_strcpy:
 	; Input:
 	;     rdi = address of the destination string

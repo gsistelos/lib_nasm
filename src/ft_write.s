@@ -1,10 +1,8 @@
 ; ssize_t ft_write(int fd, const void *buf, size_t count);
 
-extern __errno_location
-
 global ft_write
 
-section .text
+extern __errno_location
 
 ft_write:
 	; Input:

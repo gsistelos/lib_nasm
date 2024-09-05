@@ -2,8 +2,6 @@
 
 global ft_strlen
 
-section .text
-
 ft_strlen:
 	; Input:
 	;     rdi = address of the string

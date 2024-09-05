@@ -1,20 +1,21 @@
 ; void ft_list_push_front(t_list **begin_list, void *data);
 
 global ft_list_push_front
+
 extern malloc
 
 ft_list_push_front:
 	; Input:
-	;     rdi = t_list **begin_list
-	;     rsi = void *data
+	;     rdi = address to the beginning of the list
+	;     rsi = data of the new node
 
 	push rdi
 	push rsi
 
 	mov  rdi, 16
-	call malloc   ; malloc(sizeof(t_list));
-	test rax, rax ; if (!ptr)
-	jz   .done    ;     return;
+	call malloc
+	test rax, rax
+	jz   .done
 
 	pop rsi
 	pop rdi

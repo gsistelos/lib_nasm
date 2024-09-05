@@ -2,8 +2,6 @@
 
 global ft_strcmp
 
-section .text
-
 ft_strcmp:
 	; Input:
 	;     rdi = address of the first string

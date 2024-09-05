@@ -1,10 +1,8 @@
 ; ssize_t ft_read(int fd, void *buf, size_t count);
 
-extern __errno_location
-
 global ft_read
 
-section .text
+extern __errno_location
 
 ft_read:
 	; Input:

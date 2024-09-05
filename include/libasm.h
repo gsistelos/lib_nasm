@@ -9,6 +9,7 @@ typedef struct s_list {
 } t_list;
 
 extern void ft_list_push_front(t_list **begin_list, void *data);
+extern size_t ft_list_size(t_list *begin_list);
 extern size_t ft_strlen(const char *s);
 extern char *ft_strcpy(char *dest, const char *src);
 extern int ft_strcmp(const char *s1, const char *s2);
