@@ -6,27 +6,30 @@ extern __errno_location
 
 ft_read:
 	; Input:
-	;     rdi = file descriptor
-	;     rsi = buffer
-	;     rdx = number of bytes to read
+	;     rdi = fd -> file descriptor
+	;     rsi = buf -> buffer
+	;     rdx = count -> number of bytes to read
 	;
 	; Output:
 	;     rax = number of bytes read, -1 on error
 
-	mov rax, 0 ; read(fd: rdi, buf: rsi, count: rdx)
+	mov rax, 0 ; rax = read(fd, buf, count)
 	syscall
 
-	test rax, rax
-	js   .error
+	; on failure, the read syscall will return a negative number
+	; this number is also the respective errno value
+	test rax, rax ; if (rax < 0)
+	js   .error   ;     jump to .error
 
 	ret
 
 .error:
-	neg rax
-	mov rbx, rax
+	neg rax      ; rax *= -1
+	mov rdx, rax ; tmp = rax
 
-	call __errno_location
-	mov  [rax], rbx
+	; __errno_location returns a pointer to errno variable
+	call __errno_location ; rax = __errno_location()
+	mov  [rax], rdx       ; *rax = tmp
 
-	mov rax, -1
+	mov rax, -1 ; return -1
 	ret

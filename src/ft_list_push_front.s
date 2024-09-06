@@ -6,24 +6,29 @@ extern malloc
 
 ft_list_push_front:
 	; Input:
-	;     rdi = address to the beginning of the list
-	;     rsi = data of the new node
+	;     rdi = begin_list -> address to the beginning of the list
+	;     rsi = data -> data of the new node
 
+	; save registers
 	push rdi
 	push rsi
 
-	mov  rdi, 16
+	mov  rdi, 16 ; rax = malloc(16)
 	call malloc
-	test rax, rax
-	jz   .done
 
+	test rax, rax ; if (rax == NULL)
+	jz   .done    ;     jump to .done
+
+	; load registers
 	pop rsi
 	pop rdi
 
-	mov [rax], rsi     ; new_node->data = data
-	mov rsi, [rdi]
-	mov [rax + 8], rsi ; new_node->next = *begin_list
-	mov [rdi], rax     ; *begin_list = new_node
+	mov [rax], rsi     ; rax->data = data
+
+	mov rsi, [rdi]     ; tmp = *begin_list
+	mov [rax + 8], rsi ; rax->next = tmp
+
+	mov [rdi], rax     ; *begin_list = rax
 
 .done:
-	ret
+	ret ; return

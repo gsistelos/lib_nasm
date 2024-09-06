@@ -4,22 +4,21 @@ global ft_strlen
 
 ft_strlen:
 	; Input:
-	;     rdi = address of the string
+	;     rdi = str -> address of the string
 	;
 	; Output:
 	;     rax = length of the string
 
-	xor rax, rax
+	xor rax, rax ; int i = 0
 
 .loop:
-	mov bl, [rdi]
+	mov dl, [rdi + rax] ; char c = str[i]
 
-	test bl, bl
-	jz   .done
+	test dl, dl ; if (c == 0)
+	jz   .done  ;     jump to .done
 
-	inc rax
-	inc rdi
-	jmp .loop
+	inc rax   ; i++
+	jmp .loop ; jump to .loop
 
 .done:
-	ret
+	ret ; return i

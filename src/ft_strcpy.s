@@ -4,24 +4,24 @@ global ft_strcpy
 
 ft_strcpy:
 	; Input:
-	;     rdi = address of the destination string
-	;     rsi = address of the source string
+	;     rdi = dest -> address of the destination string
+	;     rsi = src -> address of the source string
 	;
 	; Output:
 	;     rax = address of the destination string
 
-	mov rax, rdi
+	xor rcx, rcx ; int i = 0
 
 .loop:
-	mov bl, [rsi]
-	mov [rdi], bl
+	mov dl, [rsi + rcx] ; char c = src[i]
+	mov [rdi + rcx], dl ; dest[i] = c
 
-	test bl, bl
-	jz   .done
+	test dl, dl ; if (c == 0)
+	jz   .done  ;     jump to .done
 
-	inc rdi
-	inc rsi
-	jmp .loop
+	inc rcx   ; i++
+	jmp .loop ; jump to .loop
 
 .done:
+	mov rax, rdi ; return dest
 	ret

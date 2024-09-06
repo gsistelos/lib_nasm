@@ -12,10 +12,7 @@ Test(ft_strdup, basic) {
   };
 
   for (size_t i = 0; cases[i]; i++) {
-    char *dup = ft_strdup(cases[i]);
-
-    cr_assert_str_eq(dup, cases[i]);
-    free(dup);
+    cr_assert_str_eq(ft_strdup(cases[i]), cases[i]);
   }
 }
 
