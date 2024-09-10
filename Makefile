@@ -1,12 +1,12 @@
 NAME = libasm.a
 
-SRC = $(addprefix src/, ft_list_push_front.s ft_list_size.s ft_read.s ft_strcmp.s ft_strcpy.s ft_strdup.s ft_strlen.s ft_write.s)
+SRC = ft_list_push_front.s ft_list_size.s ft_read.s ft_strcmp.s ft_strcpy.s ft_strdup.s ft_strlen.s ft_write.s
 
 OBJ = $(SRC:.s=.o)
 
 AS = nasm
 
-ASFLAGS = -f elf64 -Iinclude
+ASFLAGS = -f elf64
 
 RM = rm -f
 
