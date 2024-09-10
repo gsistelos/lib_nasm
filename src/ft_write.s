@@ -28,8 +28,8 @@ ft_write:
 	mov rdx, rax ; tmp = rax
 
 	; __errno_location returns a pointer to errno variable
-	call __errno_location ; rax = __errno_location()
-	mov  [rax], rdx       ; *rax = tmp
+	call __errno_location wrt ..plt ; rax = __errno_location()
+	mov  [rax], rdx                 ; *rax = tmp
 
 	mov rax, -1 ; return -1
 	ret

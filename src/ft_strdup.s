@@ -19,8 +19,8 @@ ft_strdup:
 	call ft_strlen ; rax = ft_strlen(s)
 	inc  rax       ; rax++
 
-	mov  rdi, rax ; rax = malloc(rax)
-	call malloc
+	mov  rdi, rax         ; rax = malloc(rax)
+	call malloc wrt ..plt
 
 	test rax, rax ; if (rax == 0)
 	jz   .done    ;     jump to .done

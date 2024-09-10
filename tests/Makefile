@@ -21,7 +21,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(LIB) $(OBJ)
-	$(CC) -no-pie $(OBJ) -lcriterion -L$(LIB_PATH) -lasm -o $(NAME)
+	$(CC) $(OBJ) -lcriterion -L$(LIB_PATH) -lasm -o $(NAME)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@

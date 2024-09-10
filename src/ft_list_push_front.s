@@ -13,8 +13,8 @@ ft_list_push_front:
 	push rdi
 	push rsi
 
-	mov  rdi, 16 ; rax = malloc(16)
-	call malloc
+	mov  rdi, 16          ; rax = malloc(16)
+	call malloc wrt ..plt
 
 	test rax, rax ; if (rax == NULL)
 	jz   .done    ;     jump to .done
